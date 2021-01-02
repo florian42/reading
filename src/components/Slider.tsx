@@ -1,4 +1,7 @@
 import React from "react";
+import { default as RcSlider } from "rc-slider";
+import "rc-slider/assets/index.css";
+import Typography from "./Typography";
 
 interface Props {
   readingTimePerDay: number;
@@ -7,26 +10,20 @@ interface Props {
 
 function Slider({ readingTimePerDay, setReadingTimePerDay }: Props) {
   return (
-    <label
-      htmlFor="readingMinutesPerDay"
-      className="text-gray-600 dark:text-gray-300 flex flex-auto flex-col flex-wrap flex-grow my-4"
-    >
-      Play with how much time of your day you want to dedicate to reading:
-      <input
-        className="Slider"
-        type="range"
-        id="readingMinutesPerDay"
-        name="readingMinutesPerDay"
-        min="1"
-        max={16 * 60}
-        step="5"
+    <>
+      <Typography size="base">
+        Play with how much time of your day you want to dedicate to reading.
+      </Typography>
+      <RcSlider
+        className="mb-6"
         value={readingTimePerDay}
-        onChange={(event) =>
-          setReadingTimePerDay(parseInt(event.target.value, 10))
-        }
+        onChange={(event) => setReadingTimePerDay(event)}
+        trackStyle={{ backgroundColor: "rgba(29, 78, 216, 1)" }}
+        min={5}
+        max={16 * 60}
+        step={5}
       />
-      I want to spend <b>{readingTimePerDay} minutes</b> each day reading books!
-    </label>
+    </>
   );
 }
 

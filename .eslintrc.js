@@ -34,6 +34,7 @@ module.exports = {
       },
     ],
     "react/require-default-props": "off",
+    "import/no-named-default": "off",
   },
   settings: {
     react: {

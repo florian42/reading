@@ -65,7 +65,8 @@ function App() {
           {roundToTwo(medianNumberOfWordsForBooks / wordsPerMinute / 60)} hours.
         </li>
         <li>
-          If you only read {readingTimePerDay} minutes each day, you can finish{" "}
+          If you only read <b>{readingTimePerDay} minutes </b> each day, you can
+          finish{" "}
           <b>
             {roundToTwo(
               365 /
