@@ -5,6 +5,8 @@ interface Props {
   endTime: Date | null;
   setStartTime: (date: Date | null) => void;
   setEndTime: (date: Date | null) => void;
+  setDurationInSeconds: (number: number | null) => void;
+  setWordsPerMinute: (number: number | null) => void;
 }
 
 function useButton({
@@ -12,6 +14,8 @@ function useButton({
   endTime,
   setStartTime,
   setEndTime,
+  setDurationInSeconds,
+  setWordsPerMinute,
 }: Props): [string, () => void] {
   if (startTime && endTime) {
     return [
@@ -19,6 +23,8 @@ function useButton({
       () => {
         setStartTime(null);
         setEndTime(null);
+        setDurationInSeconds(null);
+        setWordsPerMinute(null);
       },
     ];
   }
@@ -33,12 +39,16 @@ function StopwatchButton({
   setStartTime,
   endTime,
   setEndTime,
+  setDurationInSeconds,
+  setWordsPerMinute,
 }: Props) {
   const [buttonLabel, onClick] = useButton({
     startTime,
     endTime,
     setStartTime,
     setEndTime,
+    setDurationInSeconds,
+    setWordsPerMinute,
   });
 
   return (

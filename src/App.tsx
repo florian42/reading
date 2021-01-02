@@ -43,6 +43,8 @@ function App() {
         setStartTime={setStartTime}
         endTime={endTime}
         setEndTime={setEndTime}
+        setDurationInSeconds={setDurationInSeconds}
+        setWordsPerMinute={setWordsPerMinute}
       />
       <p className="font-serif text-lg antialiased leading-relaxed text-left text-gray-600 dark:text-gray-300">
         {sampleText}
@@ -52,35 +54,64 @@ function App() {
         setStartTime={setStartTime}
         endTime={endTime}
         setEndTime={setEndTime}
+        setDurationInSeconds={setDurationInSeconds}
+        setWordsPerMinute={setWordsPerMinute}
       />
       {durationInSeconds && wordsPerMinute && (
         <>
-          <p className="text-gray-600 dark:text-gray-300">
-            It took you {durationInSeconds} seconds to read the text. You read{" "}
-            <b>{wordsPerMinute} words per minute</b>. The median number of words
-            per book is {medianNumberOfWordsForBooks}. With this speed you will
-            finish an average book in{" "}
-            {roundToTwo(medianNumberOfWordsForBooks / wordsPerMinute / 60)}{" "}
-            hours. If you only read {readingTimePerDay} minutes each day, you
-            can finish{" "}
-            {roundToTwo(
-              365 /
-                (medianNumberOfWordsForBooks /
-                  (wordsPerMinute * readingTimePerDay))
-            )}{" "}
-            books in one year.
-          </p>
-          <input
-            type="range"
-            id="readingMinutesPerDay"
-            name="readingMinutesPerDay"
-            min="1"
-            max={16 * 60}
-            value={readingTimePerDay}
-            onChange={(event) =>
-              setReadingTimePerDay(parseInt(event.target.value, 10))
-            }
-          />
+          <h3 className="font-sans font-bold antialiased my-4 text-2xl text-gray-900 dark:text-white">
+            Your statistics
+          </h3>
+          <ul className="text-gray-600 dark:text-gray-300">
+            <li>It took you {durationInSeconds} seconds to read the text.</li>
+            <li>
+              You read <b>{wordsPerMinute} words per minute</b>.
+            </li>{" "}
+            <li>
+              The median number of words per book is{" "}
+              {medianNumberOfWordsForBooks}.
+            </li>{" "}
+            <li>
+              {" "}
+              With this speed you will finish an average book in{" "}
+              {roundToTwo(
+                medianNumberOfWordsForBooks / wordsPerMinute / 60
+              )}{" "}
+              hours.
+            </li>
+            <li>
+              If you only read {readingTimePerDay} minutes each day, you can
+              finish{" "}
+              <b>
+                {roundToTwo(
+                  365 /
+                    (medianNumberOfWordsForBooks /
+                      (wordsPerMinute * readingTimePerDay))
+                )}{" "}
+                books in one year
+              </b>
+              .
+            </li>
+          </ul>
+          <label
+            htmlFor="readingMinutesPerDay"
+            className="text-gray-600 dark:text-gray-300 flex flex-auto flex-col flex-wrap flex-grow my-4"
+          >
+            Play with how much time of your day you want to dedicate to reading:
+            <input
+              type="range"
+              id="readingMinutesPerDay"
+              name="readingMinutesPerDay"
+              min="1"
+              max={16 * 60}
+              value={readingTimePerDay}
+              onChange={(event) =>
+                setReadingTimePerDay(parseInt(event.target.value, 10))
+              }
+            />
+            I want to spend <b>{readingTimePerDay} minutes</b> each day reading
+            books!
+          </label>
         </>
       )}
     </div>

@@ -11,7 +11,9 @@ test("renders a header", () => {
 
 test("starts stopwatch", () => {
   render(<App />);
-  const stopwatch = screen.getByRole("button", { name: /start stopwatch/i });
+  const [stopwatch] = screen.getAllByRole("button", {
+    name: /start stopwatch/i,
+  });
   expect(stopwatch.textContent).toMatchInlineSnapshot(`"Start Stopwatch"`);
 
   userEvent.click(stopwatch);
@@ -20,12 +22,12 @@ test("starts stopwatch", () => {
 
 test("stops stopwatch and displays results", () => {
   render(<App />);
-  const stopwatch = screen.getByRole("button", { name: /start stopwatch/i });
+  const [stopwatch] = screen.getAllByRole("button", {
+    name: /start stopwatch/i,
+  });
   userEvent.click(stopwatch);
   userEvent.click(stopwatch);
   expect(stopwatch.textContent).toMatchInlineSnapshot(`"Reset"`);
-  const duration = screen.getByText(
-    /it took you \d+ milliseconds to read the text/i
-  );
+  const duration = screen.getByText(/\d+\.\d+ books in one year/i);
   expect(duration.textContent).toContain("3");
 });
