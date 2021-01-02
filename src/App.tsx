@@ -32,9 +32,11 @@ function App() {
   });
 
   return (
-    <div className="App">
+    <div className="App bg-white dark:bg-gray-800">
       <header className="App-header">
-        <h1>Measure your reading speed</h1>
+        <h1 className="font-sans font-bold antialiased my-4 text-4xl text-gray-900 dark:text-white">
+          Measure your reading speed
+        </h1>
       </header>
       <StopwatchButton
         startTime={startTime}
@@ -42,7 +44,9 @@ function App() {
         endTime={endTime}
         setEndTime={setEndTime}
       />
-      <p>{sampleText}</p>
+      <p className="font-serif text-lg antialiased leading-relaxed text-left text-gray-600 dark:text-gray-300">
+        {sampleText}
+      </p>
       <StopwatchButton
         startTime={startTime}
         setStartTime={setStartTime}
@@ -51,7 +55,7 @@ function App() {
       />
       {durationInSeconds && wordsPerMinute && (
         <>
-          <p>
+          <p className="text-gray-600 dark:text-gray-300">
             It took you {durationInSeconds} seconds to read the text. You read{" "}
             <b>{wordsPerMinute} words per minute</b>. The median number of words
             per book is {medianNumberOfWordsForBooks}. With this speed you will
