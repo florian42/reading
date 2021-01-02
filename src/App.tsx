@@ -14,6 +14,7 @@ function App() {
   const [wordsPerMinute, setWordsPerMinute] = React.useState<number | null>(
     null
   );
+  const [readingTimePerDay, setReadingTimePerDay] = React.useState(30);
 
   function roundToTwo(number: number) {
     return Math.round((number + Number.EPSILON) * 100) / 100;
@@ -49,18 +50,34 @@ function App() {
         setEndTime={setEndTime}
       />
       {durationInSeconds && wordsPerMinute && (
-        <p>
-          It took you {durationInSeconds} seconds to read the text. You read{" "}
-          <b>{wordsPerMinute} words per minute</b>. The median number of words
-          per book is {medianNumberOfWordsForBooks}. With this speed you will
-          finish an average book in{" "}
-          {roundToTwo(medianNumberOfWordsForBooks / wordsPerMinute / 60)} hours.
-          If you only read 30 minutes each day, you can finish{" "}
-          {roundToTwo(
-            365 / (medianNumberOfWordsForBooks / (wordsPerMinute * 30))
-          )}{" "}
-          books in one year.
-        </p>
+        <>
+          <p>
+            It took you {durationInSeconds} seconds to read the text. You read{" "}
+            <b>{wordsPerMinute} words per minute</b>. The median number of words
+            per book is {medianNumberOfWordsForBooks}. With this speed you will
+            finish an average book in{" "}
+            {roundToTwo(medianNumberOfWordsForBooks / wordsPerMinute / 60)}{" "}
+            hours. If you only read {readingTimePerDay} minutes each day, you
+            can finish{" "}
+            {roundToTwo(
+              365 /
+                (medianNumberOfWordsForBooks /
+                  (wordsPerMinute * readingTimePerDay))
+            )}{" "}
+            books in one year.
+          </p>
+          <input
+            type="range"
+            id="readingMinutesPerDay"
+            name="readingMinutesPerDay"
+            min="1"
+            max={16 * 60}
+            value={readingTimePerDay}
+            onChange={(event) =>
+              setReadingTimePerDay(parseInt(event.target.value, 10))
+            }
+          />
+        </>
       )}
     </div>
   );

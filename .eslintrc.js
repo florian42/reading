@@ -36,7 +36,7 @@ module.exports = {
   },
   settings: {
     react: {
-      version: "latest",
+      version: "17.0.1",
     },
     "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
     "import/parsers": {
