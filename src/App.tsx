@@ -9,6 +9,7 @@ import sampleText from "./text";
 const medianNumberOfWordsForBooks = 64000;
 
 function App() {
+  const statsRef = React.useRef<HTMLUListElement | null>(null);
   const [startTime, setStartTime] = React.useState<Date | null>(null);
   const [endTime, setEndTime] = React.useState<Date | null>(null);
   const [durationInSeconds, setDurationInSeconds] = React.useState<
@@ -34,13 +35,23 @@ function App() {
     }
   });
 
+  React.useEffect(() => {
+    if (statsRef.current) {
+      statsRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+
+  const onFinishReading = (date: Date) => {
+    setEndTime(date);
+  };
+
   function renderStatisticsSection() {
     if (!wordsPerMinute) {
       return null;
     }
 
     return (
-      <ul className="text-gray-600 dark:text-gray-300">
+      <ul className="text-gray-600 dark:text-gray-300" ref={statsRef}>
         <li>It took you {durationInSeconds} seconds to read the text.</li>
         <li>
           You read <b>{wordsPerMinute} words per minute</b>.
@@ -86,7 +97,7 @@ function App() {
         startTime={startTime}
         setStartTime={setStartTime}
         endTime={endTime}
-        setEndTime={setEndTime}
+        onFinishReading={onFinishReading}
         resetStopwatch={resetStopwatch}
       />
       <p className="font-serif text-lg antialiased leading-relaxed text-left text-gray-600 dark:text-gray-300 divide-y">
@@ -96,7 +107,7 @@ function App() {
         startTime={startTime}
         setStartTime={setStartTime}
         endTime={endTime}
-        setEndTime={setEndTime}
+        onFinishReading={onFinishReading}
         resetStopwatch={resetStopwatch}
       />
       {durationInSeconds && (

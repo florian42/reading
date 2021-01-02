@@ -5,7 +5,7 @@ interface Props {
   startTime: Date | null;
   endTime: Date | null;
   setStartTime: (date: Date | null) => void;
-  setEndTime: (date: Date | null) => void;
+  onFinishReading: (date: Date) => void;
   resetStopwatch: () => void;
 }
 
@@ -14,15 +14,15 @@ function StopwatchButton({
   startTime,
   setStartTime,
   endTime,
-  setEndTime,
   resetStopwatch,
+  onFinishReading,
 }: Props) {
   function useButton(): [string, () => void] {
     if (startTime && endTime) {
       return ["Reset", resetStopwatch];
     }
     if (startTime) {
-      return ["End Stopwatch!", () => setEndTime(new Date())];
+      return ["End Stopwatch!", () => onFinishReading(new Date())];
     }
     return ["Start Stopwatch", () => setStartTime(new Date())];
   }
