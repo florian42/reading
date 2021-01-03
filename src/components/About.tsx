@@ -8,8 +8,8 @@ interface Props {
 function About({ className }: Props) {
   return (
     <section className={className}>
-      <Typography size="2xl">About</Typography>
-      <Typography size="base">
+      <Typography size="h3">About</Typography>
+      <Typography>
         Since the new year started I want to set myself a realistic goal on how
         many books I can read this year when spending 30 minutes each day
         reading. A Video by Max Joseph about books got me interested in
@@ -22,7 +22,7 @@ function About({ className }: Props) {
         </a>
         .
       </Typography>
-      <Typography size="base">
+      <Typography>
         When you&apos;re ready to start reading, hit the &apos;Start
         Stopwatch&apos; button. After you&apos;ve finished reading the last
         word, hit the button again which after starting shows &apos;End

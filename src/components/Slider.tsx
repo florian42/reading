@@ -11,7 +11,7 @@ interface Props {
 function Slider({ readingTimePerDay, setReadingTimePerDay }: Props) {
   return (
     <>
-      <Typography size="base">
+      <Typography >
         Play with how much time of your day you want to dedicate to reading.
       </Typography>
       <RcSlider

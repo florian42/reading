@@ -91,7 +91,7 @@ function App() {
   return (
     <div className="App bg-white dark:bg-gray-800">
       <header className="App-header">
-        <Typography size="4xl">Measure your reading speed</Typography>
+        <Typography size="h1">Measure your reading speed</Typography>
       </header>
       <About />
       <StopwatchButton
@@ -113,7 +113,7 @@ function App() {
       />
       {durationInSeconds && (
         <>
-          <Typography size="2xl">Your statistics</Typography>
+          <Typography size="h3">Your statistics</Typography>
           {renderStatisticsSection()}
           <Slider
             readingTimePerDay={readingTimePerDay}
